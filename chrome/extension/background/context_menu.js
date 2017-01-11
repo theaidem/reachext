@@ -27,7 +27,7 @@ function popWindow(type) {
 
 chrome.contextMenus.create({
   id: CONTEXT_MENU_ID,
-  title: 'Rechext',
+  title: 'Reachext',
   contexts: ['all'],
   documentUrlPatterns: [
     'https://github.com/*'

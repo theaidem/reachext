@@ -1,4 +1,4 @@
-# Rechext
+# Reachext
 
 > Boilerplate for Chrome Extension React.js project.
 
@@ -26,7 +26,7 @@
 
 ```bash
 # clone it
-$ git clone https://github.com/theaidem/rechext.git
+$ git clone https://github.com/theaidem/reachext.git
 
 # Install dependencies
 $ npm i

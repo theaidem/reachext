@@ -1,6 +1,6 @@
 {
   "version": "0.0.0",
-  "name": "rechext",
+  "name": "reachext",
   "manifest_version": 2,
   "description": "React chrome extension boilerplate",
   "browser_action": {
