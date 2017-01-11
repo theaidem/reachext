@@ -8,6 +8,7 @@ module.exports = {
   entry: {
     popup: [customPath, path.join(__dirname, '../chrome/extension/popup')],
     window: [customPath, path.join(__dirname, '../chrome/extension/window')],
+    options: [customPath, path.join(__dirname, '../chrome/extension/options')],
     inject: [customPath, path.join(__dirname, '../chrome/extension/inject')],
     background: [customPath, path.join(__dirname, '../chrome/extension/background')],
   },

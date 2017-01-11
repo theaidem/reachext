@@ -12,6 +12,7 @@ const baseDevConfig = () => ({
   entry: {
     popup: [customPath, hotScript, path.join(__dirname, '../chrome/extension/popup')],
     window: [customPath, hotScript, path.join(__dirname, '../chrome/extension/window')],
+    options: [customPath, hotScript, path.join(__dirname, '../chrome/extension/options')],
     inject: [customPath, hotScript, path.join(__dirname, '../chrome/extension/inject')],
     background: [customPath, hotScript, path.join(__dirname, '../chrome/extension/background')],
   },
