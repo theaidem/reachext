@@ -1,8 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
-const postCSSConfig = require('./postcss.config');
 
-const customPath = path.join(__dirname, './customPublicPath');
+const customPath = path.join(__dirname, './customPath');
 
 module.exports = {
   entry: {
@@ -16,9 +15,6 @@ module.exports = {
     path: path.join(__dirname, '../build/js'),
     filename: '[name].bundle.js',
     chunkFilename: '[id].chunk.js'
-  },
-  postcss() {
-    return postCSSConfig;
   },
   plugins: [
     new webpack.optimize.OccurenceOrderPlugin(),
@@ -40,20 +36,15 @@ module.exports = {
     extensions: ['', '.js']
   },
   module: {
-    loaders: [{
-      test: /\.js$/,
-      loader: 'babel',
-      exclude: /node_modules/,
-      query: {
-        presets: ['react-optimize']
-      }
-    }, {
-      test: /\.css$/,
-      loaders: [
-        'style',
-        'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
-        'postcss'
-      ]
-    }]
+    loaders: [
+      {test: /\.js$/,loader: 'babel', exclude: /node_modules/, query: { presets: ['react-optimize']}},
+      {test: /\.css$/, loader: "style-loader!css-loader"},
+      { test: /\.(png|jpg)$/, loader: 'file?name=images/[name].[hash].[ext]' },
+			{test: /\.woff(\?v=\d+\.\d+\.\d+)?$/, loader: 'file?name=fonts/[name].[hash].[ext]&mimetype=application/font-woff'},
+			{test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/,loader: 'file?name=fonts/[name].[hash].[ext]&mimetype=application/font-woff'},
+			{test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: 'file?name=fonts/[name].[hash].[ext]&mimetype=application/octet-stream'},
+			{test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file?name=fonts/[name].[hash].[ext]'},
+			{test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'file?name=images/[name].[hash].[ext]&mimetype=image/svg+xml'}
+    ]
   }
 };

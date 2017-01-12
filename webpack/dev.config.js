@@ -1,10 +1,9 @@
 const path = require('path');
 const webpack = require('webpack');
-const postCSSConfig = require('./postcss.config');
 
 const host = 'localhost';
 const port = 3000;
-const customPath = path.join(__dirname, './customPublicPath');
+const customPath = path.join(__dirname, './customPath');
 const hotScript = 'webpack-hot-middleware/client?path=__webpack_hmr&dynamicPublicPath=true';
 
 const baseDevConfig = () => ({
@@ -31,9 +30,6 @@ const baseDevConfig = () => ({
     filename: '[name].bundle.js',
     chunkFilename: '[id].chunk.js'
   },
-  postcss() {
-    return postCSSConfig;
-  },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
@@ -50,21 +46,16 @@ const baseDevConfig = () => ({
     extensions: ['', '.js']
   },
   module: {
-    loaders: [{
-      test: /\.js$/,
-      loader: 'babel',
-      exclude: /node_modules/,
-      query: {
-        presets: ['react-hmre']
-      }
-    }, {
-      test: /\.css$/,
-      loaders: [
-        'style',
-        'css?modules&sourceMap&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
-        'postcss'
-      ]
-    }]
+    loaders: [
+      {test: /\.js$/,loader: 'babel', exclude: /node_modules/, query: { presets: ['react-hmre']}},
+      {test: /\.css$/, loader: "style-loader!css-loader"},
+      {test: /\.(png|jpg)$/, loader: 'file?name=images/[name].[hash].[ext]' },
+			{test: /\.woff(\?v=\d+\.\d+\.\d+)?$/, loader: 'file?name=fonts/[name].[hash].[ext]&mimetype=application/font-woff'},
+			{test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/,loader: 'file?name=fonts/[name].[hash].[ext]&mimetype=application/font-woff'},
+			{test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: 'file?name=fonts/[name].[hash].[ext]&mimetype=application/octet-stream'},
+			{test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file?name=fonts/[name].[hash].[ext]'},
+			{test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'file?name=images/[name].[hash].[ext]&mimetype=image/svg+xml'}
+    ]
   }
 });
 

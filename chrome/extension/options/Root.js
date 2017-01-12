@@ -8,7 +8,7 @@ class Root extends Component {
 
   render() {
     return (
-      <div>
+      <div className='options-page'>
         Hello Options page!
       </div>
     )
