@@ -28,6 +28,6 @@ promisifyAll(chrome.storage, [
   'local',
 ])
 
-require('./background/context_menu')
-require('./background/inject')
-require('./background/badge')
+require('./context_menu')
+require('./inject')
+require('./badge')

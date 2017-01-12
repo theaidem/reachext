@@ -13,11 +13,18 @@
     "128": "img/icon-128.png"
   },
   "web_accessible_resources": [
-    "inject.html"
+    "inject.html",
+    "css/inject.css"
   ],
   "background": {
     "page": "background.html"
   },
+  "content_scripts": [
+    {
+      "matches": ["https://github.com/*"],
+      "css": ["css/inject.css"]
+    }
+  ],
   "options_page": "options.html",
   "permissions": [ "contextMenus", "tabs", "storage", "https://github.com/*" ],
   "content_security_policy": "default-src 'self'; script-src 'self'; style-src * 'unsafe-inline'; img-src 'self' data:;"

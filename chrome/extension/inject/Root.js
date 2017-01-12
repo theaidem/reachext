@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import { render } from 'react-dom'
 
-class InjectApp extends Component {
+class Root extends Component {
 
   constructor(props) {
     super(props)
@@ -37,14 +36,4 @@ class InjectApp extends Component {
   }
 }
 
-window.addEventListener('load', () => {
-
-  chrome.storage.local.get(null, (store) => {
-    const injectDOM = document.createElement('div')
-    injectDOM.className = 'inject-react-example'
-    injectDOM.style.textAlign = 'center'
-    document.body.appendChild(injectDOM)
-    render(<InjectApp { ...store }/>, injectDOM)
-  })
-
-})
+export default Root
